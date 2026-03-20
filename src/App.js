@@ -331,8 +331,8 @@ export default function App() {
             </div>
             <div style={{ opacity: 0.6, marginTop: 2 }}>Dwarakanath K Dinesh · MSc Big Data Analytics · AIMIT</div>
           </div>
-          {view === 'results' && <button onClick={() => setView('canvas')} style={{ padding: '6px 14px', borderRadius: 16, border: 'none', cursor: 'poInter', fontSize: 11, fontWeight: 600, background: 'rgba(255,255,255,0.2)', color: 'white' }}>← Canvas</button>}
-          <button onClick={() => setDarkMode(!dm)} style={{ padding: '6px 12px', borderRadius: 16, border: 'none', cursor: 'poInter', fontSize: 13, background: 'rgba(255,255,255,0.15)', color: 'white' }}>{dm ? '☀️' : '🌙'}</button>
+          {view === 'results' && <button onClick={() => setView('canvas')} style={{ padding: '6px 14px', borderRadius: 16, border: 'none', cursor: 'pointer', fontSize: 11, fontWeight: 600, background: 'rgba(255,255,255,0.2)', color: 'white' }}>← Canvas</button>}
+          <button onClick={() => setDarkMode(!dm)} style={{ padding: '6px 12px', borderRadius: 16, border: 'none', cursor: 'pointer', fontSize: 13, background: 'rgba(255,255,255,0.15)', color: 'white' }}>{dm ? '☀️' : '🌙'}</button>
         </div>
       </div>
 
@@ -340,9 +340,9 @@ export default function App() {
         <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
           {/* LEFT */}
           <div style={{ width: 172, background: panelBg, borderRight: `1px solid ${border}`, overflowY: 'auto', padding: '10px 8px', flexShrink: 0 }}>
-            <button onClick={() => setShowTpl(!showTpl)} style={{ width: '100%', padding: '8px 10px', borderRadius: 8, border: `1px solid ${dm ? '#2a2a5a' : '#d0ede3'}`, background: dm ? '#1a2a3a' : '#f0faf7', color: dm ? '#4ade80' : '#0F6E56', fontSize: 11, fontWeight: 600, cursor: 'poInter', marginBottom: 8 }}>⚡ Pipeline Templates</button>
+            <button onClick={() => setShowTpl(!showTpl)} style={{ width: '100%', padding: '8px 10px', borderRadius: 8, border: `1px solid ${dm ? '#2a2a5a' : '#d0ede3'}`, background: dm ? '#1a2a3a' : '#f0faf7', color: dm ? '#4ade80' : '#0F6E56', fontSize: 11, fontWeight: 600, cursor: 'pointer', marginBottom: 8 }}>⚡ Pipeline Templates</button>
             {showTpl && PIPELINE_TEMPLATES.map((tpl, i) => (
-              <div key={i} onClick={() => loadTemplate(tpl)} style={{ padding: '7px 9px', borderRadius: 7, marginBottom: 4, cursor: 'poInter', border: `1px solid ${border}`, background: dm ? '#1a1a3e' : '#fafafa', fontSize: 11 }}
+              <div key={i} onClick={() => loadTemplate(tpl)} style={{ padding: '7px 9px', borderRadius: 7, marginBottom: 4, cursor: 'pointer', border: `1px solid ${border}`, background: dm ? '#1a1a3e' : '#fafafa', fontSize: 11 }}
                 onMouseEnter={e => e.currentTarget.style.background = dm ? '#2a2a5e' : '#E1F5EE'}
                 onMouseLeave={e => e.currentTarget.style.background = dm ? '#1a1a3e' : '#fafafa'}>
                 <div style={{ fontWeight: 600, color: '#0F6E56', fontSize: 11 }}>{tpl.name}</div>
@@ -360,14 +360,14 @@ export default function App() {
           {/* CANVAS */}
           <div ref={canvasRef} style={{ flex: 1, position: 'relative', background: canvasBg, backgroundImage: dm ? 'radial-gradient(#2a2a4a 1px,transparent 1px)' : 'radial-gradient(#dde 1px,transparent 1px)', backgroundSize: '24px 24px', overflow: 'hidden' }} onDragOver={handleDragOver} onDrop={handleDrop}>
             {blocks.length === 0 && !running && (
-              <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', textAlign: 'center', poInterEvents: 'none' }}>
+              <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', textAlign: 'center', pointerEvents: 'none' }}>
                 <div style={{ fontSize: 56, marginBottom: 14 }}>⚙️</div>
                 <div style={{ fontSize: 17, fontWeight: 700, color: dm ? '#555' : '#bbb' }}>Drag blocks to build your ML pipeline</div>
                 <div style={{ fontSize: 12, color: dm ? '#444' : '#ccc', marginTop: 6 }}>Data Source → Algorithm → Output</div>
                 <div style={{ fontSize: 11, color: dm ? '#444' : '#ccc', marginTop: 4 }}>Or use ⚡ Pipeline Templates on the left</div>
               </div>
             )}
-            <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', poInterEvents: 'none', zIndex: 5 }}>
+            <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 5 }}>
               <defs><marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#1D9E75" /></marker></defs>
               {renderConnections()}
             </svg>
@@ -389,8 +389,8 @@ export default function App() {
               </div>
             )}
             <div style={{ position: 'absolute', bottom: 18, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 10, zIndex: 20 }}>
-              <button onClick={clearCanvas} style={{ padding: '9px 20px', borderRadius: 20, border: `1px solid ${border}`, cursor: 'poInter', fontSize: 12, fontWeight: 600, background: panelBg, color: subText }}>✕ Clear</button>
-              <button onClick={runPipeline} disabled={running} style={{ padding: '9px 26px', borderRadius: 20, border: 'none', cursor: 'poInter', fontSize: 13, fontWeight: 700, background: 'linear-gradient(135deg, #1D9E75, #0a5c43)', color: 'white', boxShadow: '0 4px 14px rgba(15,110,86,0.4)', opacity: running ? 0.7 : 1, letterSpacing: '0.3px' }}>
+              <button onClick={clearCanvas} style={{ padding: '9px 20px', borderRadius: 20, border: `1px solid ${border}`, cursor: 'pointer', fontSize: 12, fontWeight: 600, background: panelBg, color: subText }}>✕ Clear</button>
+              <button onClick={runPipeline} disabled={running} style={{ padding: '9px 26px', borderRadius: 20, border: 'none', cursor: 'pointer', fontSize: 13, fontWeight: 700, background: 'linear-gradient(135deg, #1D9E75, #0a5c43)', color: 'white', boxShadow: '0 4px 14px rgba(15,110,86,0.4)', opacity: running ? 0.7 : 1, letterSpacing: '0.3px' }}>
                 {running ? '⚙ Running...' : '▶ Run Pipeline'}
               </button>
             </div>
@@ -407,7 +407,7 @@ export default function App() {
               { key: 'network',  label: 'Network Traffic',   cols: 'bytes, count' },
               { key: 'azure',    label: 'Equipment Sensors', cols: 'volt, rotate, pressure' },
             ].map(opt => (
-              <div key={opt.key} onClick={() => setSynType(opt.key)} style={{ padding: '7px 9px', borderRadius: 7, marginBottom: 4, cursor: 'poInter', border: `1.5px solid ${synType === opt.key ? '#1D9E75' : border}`, background: synType === opt.key ? (dm ? '#0a2a1a' : '#E8F5E9') : 'transparent', fontSize: 11, transition: 'all 0.15s' }}>
+              <div key={opt.key} onClick={() => setSynType(opt.key)} style={{ padding: '7px 9px', borderRadius: 7, marginBottom: 4, cursor: 'pointer', border: `1.5px solid ${synType === opt.key ? '#1D9E75' : border}`, background: synType === opt.key ? (dm ? '#0a2a1a' : '#E8F5E9') : 'transparent', fontSize: 11, transition: 'all 0.15s' }}>
                 <div style={{ fontWeight: 600, color: synType === opt.key ? '#0F6E56' : textCol }}>{opt.label}</div>
                 <div style={{ fontSize: 9, color: subText }}>{opt.cols}</div>
               </div>
@@ -416,7 +416,7 @@ export default function App() {
               <div style={{ fontSize: 10, color: subText, marginBottom: 4 }}>Rows: <span style={{ fontFamily: 'DM Mono', fontWeight: 600, color: '#1D9E75' }}>{synRows}</span></div>
               <input type="range" min="100" max="2000" step="100" value={synRows} onChange={e => setSynRows(+e.target.value)} style={{ width: '100%', accentColor: '#1D9E75' }} />
             </div>
-            <button onClick={generateLive} style={{ width: '100%', padding: '9px 0', borderRadius: 8, border: 'none', cursor: 'poInter', fontSize: 12, fontWeight: 700, background: 'linear-gradient(135deg, #1D9E75, #0a5c43)', color: 'white', boxShadow: '0 2px 8px rgba(15,110,86,0.3)' }}>⚡ Generate &amp; Use</button>
+            <button onClick={generateLive} style={{ width: '100%', padding: '9px 0', borderRadius: 8, border: 'none', cursor: 'pointer', fontSize: 12, fontWeight: 700, background: 'linear-gradient(135deg, #1D9E75, #0a5c43)', color: 'white', boxShadow: '0 2px 8px rgba(15,110,86,0.3)' }}>⚡ Generate &amp; Use</button>
             {liveData && <div style={{ marginTop: 8, padding: '8px 10px', background: dm ? '#0a2a1a' : '#E8F5E9', borderRadius: 8, fontSize: 10, color: '#2E7D32', lineHeight: 1.5 }}>✅ {liveData.length} rows generated<br />Ready to use in pipeline!</div>}
             <div style={{ marginTop: 16, borderTop: `1px solid ${border}`, paddingTop: 12 }}>
               <div style={{ fontSize: 9, fontWeight: 700, color: subText, textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: 8 }}>HOW TO USE</div>
@@ -435,7 +435,7 @@ export default function App() {
           <div style={{ background: panelBg, borderRadius: 18, padding: 24, width: 520, maxHeight: '82vh', overflowY: 'auto', boxShadow: '0 28px 80px rgba(0,0,0,0.3)', color: textCol }} onClick={e => e.stopPropagation()}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 18 }}>
               <span style={{ fontSize: 17, fontWeight: 700 }}>Select Data Source</span>
-              <button onClick={() => setShowModal(false)} style={{ background: 'none', border: 'none', fontSize: 24, cursor: 'poInter', color: subText }}>×</button>
+              <button onClick={() => setShowModal(false)} style={{ background: 'none', border: 'none', fontSize: 24, cursor: 'pointer', color: subText }}>×</button>
             </div>
             <MSection label="DATABRICKS VOLUME FILES" subText={subText} />
             {volFiles.map((f, i) => <DOption key={i} onClick={() => pickData(f.name, f.best, f.use, f.cols)} border={border} dm={dm}><div style={{ fontWeight: 600, fontSize: 12 }}>📄 {f.name}</div><div style={{ fontSize: 10, color: subText, marginTop: 2 }}>{f.use} · {f.size}</div><div style={{ fontSize: 10, color: subText }}>Columns: {f.cols}</div><Bdg>Best: {BLOCK_TYPES[f.best]?.label}</Bdg></DOption>)}
@@ -460,7 +460,7 @@ function PlacedBlock({ block, onMouseDown, onRemove }) {
   const cfg = BLOCK_TYPES[block.type];
   return (
     <div onMouseDown={e => onMouseDown(e, block.id)} style={{ position: 'absolute', left: block.x, top: block.y, padding: '10px 16px', borderRadius: 12, cursor: 'move', fontSize: 12, fontWeight: 600, border: `2px solid ${cfg.border}`, background: cfg.color, color: cfg.text, boxShadow: '0 4px 16px rgba(0,0,0,0.15)', minWidth: 120, textAlign: 'center', zIndex: 10, userSelect: 'none' }}>
-      <button data-remove="true" onClick={() => onRemove(block.id)} style={{ position: 'absolute', top: -8, right: -8, background: '#e53935', color: 'white', border: 'none', borderRadius: '50%', width: 18, height: 18, cursor: 'poInter', fontSize: 10, lineHeight: '18px', padding: 0 }}>×</button>
+      <button data-remove="true" onClick={() => onRemove(block.id)} style={{ position: 'absolute', top: -8, right: -8, background: '#e53935', color: 'white', border: 'none', borderRadius: '50%', width: 18, height: 18, cursor: 'pointer', fontSize: 10, lineHeight: '18px', padding: 0 }}>×</button>
       <div>{cfg.label}</div>
       {block.subtitle && <div style={{ fontSize: 9, opacity: 0.7, marginTop: 2, fontWeight: 400 }}>{block.subtitle.substring(0, 22)}</div>}
     </div>
@@ -468,7 +468,7 @@ function PlacedBlock({ block, onMouseDown, onRemove }) {
 }
 
 function MSection({ label, subText }) { return <div style={{ fontSize: 9, fontWeight: 700, color: subText, textTransform: 'uppercase', letterSpacing: '0.8px', margin: '14px 0 6px', fontFamily: 'DM Mono' }}>{label}</div>; }
-function DOption({ onClick, border, dm, children }) { const [h, setH] = useState(false); return <div onClick={onClick} style={{ padding: '10px 12px', borderRadius: 10, marginBottom: 6, cursor: 'poInter', border: `1px solid ${h ? '#1D9E75' : border}`, background: h ? (dm ? '#0a2a1a' : '#E8F5E9') : 'transparent', transition: 'all 0.15s' }} onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}>{children}</div>; }
+function DOption({ onClick, border, dm, children }) { const [h, setH] = useState(false); return <div onClick={onClick} style={{ padding: '10px 12px', borderRadius: 10, marginBottom: 6, cursor: 'pointer', border: `1px solid ${h ? '#1D9E75' : border}`, background: h ? (dm ? '#0a2a1a' : '#E8F5E9') : 'transparent', transition: 'all 0.15s' }} onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}>{children}</div>; }
 function Bdg({ children }) { return <span style={{ display: 'inline-block', fontSize: 9, padding: '2px 7px', borderRadius: 8, background: '#E1F5EE', color: '#0F6E56', marginTop: 4, fontFamily: 'DM Mono' }}>{children}</span>; }
 
 function ResultsDashboard({ results, dm, panelBg, textCol, subText, border, bg, activeTab, setActiveTab }) {
@@ -557,7 +557,7 @@ function ResultsDashboard({ results, dm, panelBg, textCol, subText, border, bg, 
           <div style={{ fontSize: 20, fontWeight: 800, color: textCol, letterSpacing: '-0.4px' }}>{cfg.title}</div>
           <div style={{ fontSize: 11, color: subText, marginTop: 4 }}>Data: {dataName} &nbsp;·&nbsp; {data.length} records processed &nbsp;·&nbsp; Dynamic pipeline: ETL + Feature Engineering + Normalization applied automatically</div>
         </div>
-        <button onClick={dl} style={{ padding: '9px 18px', borderRadius: 10, border: 'none', cursor: 'poInter', fontSize: 12, fontWeight: 600, background: 'linear-gradient(135deg, #1D9E75, #0a5c43)', color: 'white', flexShrink: 0 }}>⬇ Export CSV</button>
+        <button onClick={dl} style={{ padding: '9px 18px', borderRadius: 10, border: 'none', cursor: 'pointer', fontSize: 12, fontWeight: 600, background: 'linear-gradient(135deg, #1D9E75, #0a5c43)', color: 'white', flexShrink: 0 }}>⬇ Export CSV</button>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 10, marginBottom: 16 }}>
@@ -583,7 +583,7 @@ function ResultsDashboard({ results, dm, panelBg, textCol, subText, border, bg, 
 
       <div style={{ display: 'flex', gap: 0, marginBottom: 0, borderBottom: `2px solid ${border}` }}>
         {tabs.map((t, i) => (
-          <button key={i} onClick={() => setActiveTab(i)} style={{ padding: '9px 18px', border: 'none', cursor: 'poInter', fontSize: 12, fontWeight: activeTab === i ? 700 : 400, background: 'transparent', color: activeTab === i ? '#1D9E75' : subText, borderBottom: `2px solid ${activeTab === i ? '#1D9E75' : 'transparent'}`, marginBottom: -2, transition: 'all 0.15s' }}>
+          <button key={i} onClick={() => setActiveTab(i)} style={{ padding: '9px 18px', border: 'none', cursor: 'pointer', fontSize: 12, fontWeight: activeTab === i ? 700 : 400, background: 'transparent', color: activeTab === i ? '#1D9E75' : subText, borderBottom: `2px solid ${activeTab === i ? '#1D9E75' : 'transparent'}`, marginBottom: -2, transition: 'all 0.15s' }}>
             {t}
           </button>
         ))}
