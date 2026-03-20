@@ -1,3 +1,4 @@
+import { HiOutlineBeaker } from 'react-icons/hi'
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Line, Bar, Radar, Doughnut } from 'react-chartjs-2';
 import {
@@ -272,7 +273,7 @@ export default function App() {
     if (match) {
       const { algo, reason } = match[1];
       setSuggestion(selAlgo && selAlgo !== algo
-        ? `💡 Detected: ${cols}. ${reason}. You selected ${BLOCK_TYPES[selAlgo]?.label} — dynamic mode with auto-engineered features will be used.`
+        ? ` <HiOutlineBeaker size={13} color="#795548"/>  Detected: ${cols}. ${reason}. You selected ${BLOCK_TYPES[selAlgo]?.label} — dynamic mode with auto-engineered features will be used.`
         : `✅ ${reason}. Auto-detected columns: ${cols}.`);
     } else {
       setSuggestion(`✅ Data selected: ${name}. Auto-detected columns: ${cols}. Dynamic pipeline will handle ETL, feature engineering and normalization automatically.`);
