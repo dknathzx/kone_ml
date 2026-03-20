@@ -82,7 +82,7 @@ const ALGO_SUGGESTIONS = {
 
 const cOpts = (title, extra = {}) => ({
   responsive: true, maintainAspectRatio: false,
-  plugins: { legend: { labels: { font: { family: 'DM Sans', size: 10 }, color: '#555' } }, title: title ? { display: true, text: title, font: { family: 'DM Sans', size: 11, weight: '600' }, color: '#333' } : undefined, tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', titleFont: { family: 'DM Mono', size: 10 }, bodyFont: { family: 'DM Mono', size: 10 } } },
+  plugins: { legend: { labels: { font: { family: 'Times New Roman', size: 10 }, color: '#555' } }, title: title ? { display: true, text: title, font: { family: 'Times New Roman', size: 11, weight: '600' }, color: '#333' } : undefined, tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', titleFont: { family: 'DM Mono', size: 10 }, bodyFont: { family: 'DM Mono', size: 10 } } },
   scales: { x: { display: false, grid: { display: false } }, y: { ticks: { font: { family: 'DM Mono', size: 9 }, color: '#888' }, grid: { color: 'rgba(0,0,0,0.05)' } }, ...extra }
 });
 
@@ -316,7 +316,7 @@ export default function App() {
   });
 
   return (
-    <div style={{ fontFamily: "'DM Sans', sans-serif", background: bg, height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden', color: textCol, transition: 'all 0.3s' }}>
+    <div style={{ fontFamily: "'Times New Roman', sans-serif", background: bg, height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden', color: textCol, transition: 'all 0.3s' }}>
       <div style={{ background: 'linear-gradient(135deg, #1D9E75 0%, #0a5c43 100%)', color: 'white', padding: '10px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', boxShadow: '0 2px 16px rgba(10,92,67,0.4)', flexShrink: 0 }}>
         <div>
           <div style={{ fontSize: 17, fontWeight: 700, letterSpacing: '-0.4px' }}>Composable ML Platform</div>
@@ -651,8 +651,8 @@ function MChart({ algo, data, lro, aro }) {
 }
 
 function SChart({ algo, data, an, xf, oa, ia, lro }) {
-  if (algo === 'lstm') return <Doughnut data={{ labels: ['Normal Sequences', 'Anomalies'], datasets: [{ data: [data.length - an, an], backgroundColor: ['#1D9E75', '#e53935'], borderWidth: 2, borderColor: '#fff' }] }} options={{ responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { font: { family: 'DM Sans', size: 11 } } } } }} />;
-  if (algo === 'xgb' || algo === 'rf') return <Doughnut data={{ labels: ['Normal Operation', 'Will Fail'], datasets: [{ data: [data.length - xf, xf], backgroundColor: ['#1D9E75', '#e53935'], borderWidth: 2, borderColor: '#fff' }] }} options={{ responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { font: { family: 'DM Sans', size: 11 } } } } }} />;
+  if (algo === 'lstm') return <Doughnut data={{ labels: ['Normal Sequences', 'Anomalies'], datasets: [{ data: [data.length - an, an], backgroundColor: ['#1D9E75', '#e53935'], borderWidth: 2, borderColor: '#fff' }] }} options={{ responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { font: { family: 'Times New Roman', size: 11 } } } } }} />;
+  if (algo === 'xgb' || algo === 'rf') return <Doughnut data={{ labels: ['Normal Operation', 'Will Fail'], datasets: [{ data: [data.length - xf, xf], backgroundColor: ['#1D9E75', '#e53935'], borderWidth: 2, borderColor: '#fff' }] }} options={{ responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { font: { family: 'Times New Roman', size: 11 } } } } }} />;
   if (algo === 'ifo') { const sv = {}; data.forEach(d => { const s = d.severity || 'normal'; sv[s] = (sv[s] || 0) + 1; }); const se = Object.entries(sv); return <Bar data={{ labels: se.map(e => e[0].replace(/_/g, ' ')), datasets: [{ data: se.map(e => e[1]), backgroundColor: ['#1D9E75', '#FF9800', '#e53935', '#7B1FA2'], borderRadius: 4 }] }} options={{ ...cOpts('Severity Level Distribution'), scales: { x: { ticks: { font: { family: 'DM Mono', size: 9 }, color: '#888', maxRotation: 20 }, grid: { display: false } }, y: { ticks: { font: { family: 'DM Mono', size: 9 }, color: '#888' }, grid: { color: 'rgba(0,0,0,0.05)' } } } }} />; }
   if (algo === 'lr' || algo === 'arima') { const errs = lro.slice(0, 50).map(d => +d.error || 0); return <Bar data={{ labels: errs.map((_, i) => i), datasets: [{ label: 'Prediction Error per Step', data: errs, backgroundColor: 'rgba(229,57,53,0.6)', borderRadius: 2 }] }} options={{ ...cOpts('Prediction Error Distribution'), scales: { x: { display: false }, y: { ticks: { font: { family: 'DM Mono', size: 9 }, color: '#888' }, grid: { color: 'rgba(0,0,0,0.05)' } } } }} />; }
   return null;
@@ -662,7 +662,7 @@ function RChart({ algo, data, ts }) {
   const labels = algo === 'xgb' || algo === 'rf' ? ['volt', 'rotate', 'pressure', 'vibration', 'confidence'] : algo === 'lstm' ? ['cpu_util', 'mem_util', 'error_magnitude', 'anomaly_density', 'stability'] : algo === 'ifo' ? ['latency', 'anomaly_score', 'degradation', 'critical_rate', 'recovery'] : algo === 'svm' ? ['src_bytes', 'dst_bytes', 'error_rate', 'packet_count', 'duration'] : ['prediction_acc', 'trend_fit', 'seasonality', 'error_rate', 'forecast_range'];
   const n = labels.map(() => +((Math.random() * 25 + 65)).toFixed(0));
   const a = labels.map(() => +((Math.random() * 35 + 20)).toFixed(0));
-  return <Radar data={{ labels, datasets: [{ label: 'Normal Pattern', data: n, borderColor: '#1D9E75', backgroundColor: 'rgba(29,158,117,0.15)', pointBackgroundColor: '#1D9E75', borderWidth: 2 }, { label: 'Anomalous Pattern', data: a, borderColor: '#e53935', backgroundColor: 'rgba(229,57,53,0.1)', pointBackgroundColor: '#e53935', borderWidth: 2 }] }} options={{ responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { font: { family: 'DM Sans', size: 10 } } } }, scales: { r: { ticks: { font: { family: 'DM Mono', size: 8 }, backdropColor: 'transparent' }, grid: { color: 'rgba(0,0,0,0.1)' }, pointLabels: { font: { family: 'DM Mono', size: 9 } } } } }} />;
+  return <Radar data={{ labels, datasets: [{ label: 'Normal Pattern', data: n, borderColor: '#1D9E75', backgroundColor: 'rgba(29,158,117,0.15)', pointBackgroundColor: '#1D9E75', borderWidth: 2 }, { label: 'Anomalous Pattern', data: a, borderColor: '#e53935', backgroundColor: 'rgba(229,57,53,0.1)', pointBackgroundColor: '#e53935', borderWidth: 2 }] }} options={{ responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { font: { family: 'Times New Roman', size: 10 } } } }, scales: { r: { ticks: { font: { family: 'DM Mono', size: 8 }, backdropColor: 'transparent' }, grid: { color: 'rgba(0,0,0,0.1)' }, pointLabels: { font: { family: 'DM Mono', size: 9 } } } } }} />;
 }
 
 function SDChart({ algo, data }) {
