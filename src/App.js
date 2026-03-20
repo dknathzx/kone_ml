@@ -273,10 +273,10 @@ export default function App() {
     if (match) {
       const { algo, reason } = match[1];
       setSuggestion(selAlgo && selAlgo !== algo
-        ? ` Detected: ${cols}. ${reason}. You selected ${BLOCK_TYPES[selAlgo]?.label} — dynamic mode with auto-engineered features will be used.`
-        : ` ${reason}. Auto-detected columns: ${cols}.`);
+        ? `💡Detected: ${cols}. ${reason}. You selected ${BLOCK_TYPES[selAlgo]?.label} — dynamic mode with auto-engineered features will be used.`
+        : `✅ ${reason}. Auto-detected columns: ${cols}.`);
     } else {
-      setSuggestion(` Data selected: ${name}. Auto-detected columns: ${cols}. Dynamic pipeline will handle ETL, feature engineering and normalization automatically.`);
+      setSuggestion(`✅ Data selected: ${name}. Auto-detected columns: ${cols}. Dynamic pipeline will handle ETL, feature engineering and normalization automatically.`);
     }
   };
 
